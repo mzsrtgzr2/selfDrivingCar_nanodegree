@@ -1,7 +1,7 @@
 # Code and solutions for ND013
 ## Self driving car nanodegree
 
-# Finding Lane Lines of the road
+# Project #1 - Finding Lane Lines of the road
 
 When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
 
@@ -26,3 +26,58 @@ In order to draw a **single line on the left and right lanes**, I modified the `
 > - With the linear coefficients we can **draw two lines** (left and right). 
 
 ![](01_finding_lane_lines_on_the_road/project/test_images_output/challange1.jpg)
+
+# Project #2 - Traffic Sign Recognition
+
+Build a Traffic Sign Recognition model
+
+## Goals/Steps
+* Load the data set (see below for links to the project data set)
+* Explore, summarize and visualize the data set
+* Design, train and test a model architecture
+* Use the model to make predictions on new images
+* Analyze the softmax probabilities of the new images
+* Summarize the results with a written report
+
+## Dataset
+The dataset is a bunch of images from 43 different classes of traffic signs in germany.
+![signs](./02_traffic_signs_recognition/assets/signs.png "signs")
+
+The bar chart shows the data distribution of the training data. Each bar represents one class of the dataset.
+
+![hist](./02_traffic_signs_recognition/assets/hist.png "histogram")
+
+## Results
+I used Lenet neuronal network to classify the traffic signs. 
+ The input of the network is an image and the output is 
+ the probabilty of each of the possible traffic signs.
+ 
+ My final model consisted of the following layers:
+
+| Layer         		|     Description	        					|
+|:---------------------:|:---------------------------------------------:|
+| Input         		| 32x32x1 grayscale image   							|
+| Convolution 5x5     	| 2x2 stride, valid padding, outputs 28x28x6 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
+| Convolution 5x5	    | 2x2 stride, valid padding, outputs 10x10x16    |
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x16 				|
+| Flatten				| 3 dimensions -> 1 dimension					|
+| Fully connected		| input 412, output 122        									|
+| RELU					|												|
+| Dropout				| 50% keep        									|
+| Fully connected		| input 122, output 84        									|
+| RELU					|												|
+| Dropout				| 50% keep        									|
+| Fully connected		| input 84, output 43        									|
+
+
+Here are my final training parameters:
+- EPOCHS = 20
+- BATCH_SIZE = 32
+- LEARNING RATE = 0.0005)
+
+My results after training the model:
+* Validation Accuracy = **96%**
+* Test Accuracy = **93.7%**

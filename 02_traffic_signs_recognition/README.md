@@ -1,4 +1,4 @@
-#**Traffic Sign Recognition** 
+# Traffic Sign Recognition
 
 Moshe Roth's solution of Project #2 of Udacity's Self Driving Car Nanodegree.
 ---
