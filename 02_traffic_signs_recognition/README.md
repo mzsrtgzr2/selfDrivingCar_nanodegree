@@ -163,8 +163,9 @@ The model was able to correctly guess 3 of the 5 traffic signs, which gives an a
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-##### imgage 1
+##### Image # 1
 ![alt text](./assets/web_01.png)
+
 For the first image, (wild animal crossing )the model is relatively sure that this 
 is a Dangerous curve (probability of 0.9). Those signs are very similar. But it's wierd
 that the acutla category of Wild animal is low probabiliy after all.
@@ -180,8 +181,9 @@ that the acutla category of Wild animal is low probabiliy after all.
 | .0	      			| Wild animals					 				|
 | .0				    | Bicycles      							|
 
-##### imgage 2
+##### Image # 2
 ![alt text](./assets/web_02.png)
+
 For the second image, (End of all limits )the model is  sure that this 
 is a End of limits!
 
@@ -193,8 +195,9 @@ is a End of limits!
 | .98       			| End of all limits								| 
 | .02     				| End of no passing 										|
 
- ##### imgage 3
+ ##### Image # 3
  ![alt text](./assets/web_03.png)
+
  For the third image, (Bicycles) the lost its features due to the resize. We see
  that the model is indecisive.  
 
@@ -210,8 +213,9 @@ is a End of limits!
 | .02				    | Speed limit      							|
 
 
-##### imgage 4
+##### Image # 4
  ![alt text](./assets/web_04.png)
+
  The forth image (30Km/Hr Speed limit) is predicted perfectly.  
 
 
@@ -221,8 +225,9 @@ is a End of limits!
 |:---------------------:|:---------------------------------------------:| 
 | 1.0        			| Speed limit 30								| 
 
-##### imgage 5
+##### Image # 5
  ![alt text](./assets/web_05.png)
+
  The fifth image, (General caution) is predicted perfectly. 
 
 
