@@ -113,6 +113,18 @@ Here are my final training parameters:
 - EPOCHS = 20
 - BATCH_SIZE = 32
 - LEARNING RATE = 0.0005)
+- OPTIMISER = Adam Optimizer 
+
+I started with 5 EOPCHES to see that I get the neural network to learn. Afterwards, 
+I increased it up to a point where I saw there is no visible increase in the 
+Validation accuracy. I also tuned the Learning rate to a small value with
+a small batch size of 32 gave me the Accuracy I look for (more than 0.95). 
+I tried different intizalization for the weights (different sigma values) 
+but i found out that the 0.1 variance gave me the better convergance. 
+
+Only after I changed the dataset to grayscale I saw results better than 88%.
+And the Augmentation of the zoom and rotation took the results to > 95% like 
+I wanted it to. 
 
 My results after training the model:
 * Validation Accuracy = **96%**
@@ -239,4 +251,10 @@ is a End of limits!
 
 
 
- 
+ The accuracy for the web-fetched images is very low in comparison to the 
+ test set (60% accuracy) - but this is because the web-fetched images are not
+ optimized like the dataset. In the dataset the entire image comprises the 
+ traffic signs, there is no text on top of the image (like I have in img 3 )
+ because its web-fetched. I'm pretty satisfied of the results because the 
+ 2 mispredictions are very easy to explain and we need a better dataset
+ to train on in order to make those predictions right. 
