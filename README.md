@@ -81,3 +81,25 @@ Here are my final training parameters:
 My results after training the model:
 * Validation Accuracy = **96%**
 * Test Accuracy = **93.7%**
+
+
+# Project #3 - Behavioral Cloning 
+
+![img](03-behavioral_cloning/images/img2.png)
+
+The goals / steps of this project are the following:
+* Use the simulator to collect data of good driving behavior
+* Build, a convolution neural network in Keras that predicts steering angles from images
+* Train and validate the model with a training and validation set
+* Test that the model successfully drives around track one without leaving the road
+* Summarize the results with a written report
+
+
+I used nvidia autonomous car network that attempted to train a similiar network
+with the same goals - steering the car through a road. 
+
+I used different hyperparameters, and I needed to output only one target - the steering angle
+of the car. You can see the visualization later in the writeup. 
+
+![img](03-behavioral_cloning/images/ff.png)
+

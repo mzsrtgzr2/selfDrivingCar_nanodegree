@@ -205,3 +205,4 @@ number of epochs was 5. I used an adam optimizer so
 that manually training the learning rate wasn't necessary.
 The training history looks like this
 ![img](images/train_history.png)
+
