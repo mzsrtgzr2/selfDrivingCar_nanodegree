@@ -259,9 +259,13 @@ every point the car drives on the track.
 I cropped every image so only the relevant view is visible (without the sky/trees/etc and without
 the driver wheel at the bottom of the image). It looks like this:
 original image:
+
 ![img](images/view.jpg)
+
 cropped image:
+
 ![img](images/view_cropped.jpg)
+
 
 I finally randomly shuffled the data set and put 15% of the data into a validation set. 
 
