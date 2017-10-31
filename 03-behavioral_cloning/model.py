@@ -15,12 +15,12 @@ if __name__ == '__main__':
     train_data, val_data = train_test_split(data, test_size=0.15)
     print ('Got total of {} images'.format(len(data)))
 
-
+    
     # build the model and train
     print ('Building the model and training...')
     model = build_classifier_nvidia()
     batch_size = 32
-    nb_epoch = 5
+    nb_epoch = 3
     # Compiling and training the model
     model.compile(loss='mse', optimizer='adam')
 
@@ -33,9 +33,9 @@ if __name__ == '__main__':
 
     history_object = model.fit_generator(
         get_batches(train_data, batch_size=batch_size),
-        samples_per_epoch=len(train_data),
+        samples_per_epoch=len(train_data)*2, # because we flip the images
         validation_data=get_batches(val_data, batch_size=batch_size),
-        nb_val_samples=len(val_data),
+        nb_val_samples=len(val_data)*2, # because we flip the images
         nb_epoch=nb_epoch,
         verbose=1)
 

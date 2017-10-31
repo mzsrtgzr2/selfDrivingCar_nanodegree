@@ -1,5 +1,7 @@
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Convolution2D, Cropping2D
+from keras.layers import Activation, Flatten, Dense, Lambda, Convolution2D, Cropping2D, Dropout, BatchNormalization
+from keras.layers.advanced_activations import LeakyReLU, PReLU
+
 import csv
 import os
 import sklearn
@@ -24,6 +26,8 @@ def preprocess_pipeline (data_path='./data/', correction=.18):
         os.path.join(dir, 'driving_log.csv')
     ), directories))
 
+    features_filenames = []
+    targets = []
     for data_dir in data_dirs:
         # read all the lines from the csv driving_log file
         with open(os.path.join(data_dir, 'driving_log.csv'), 'r') as f:
@@ -48,16 +52,15 @@ def preprocess_pipeline (data_path='./data/', correction=.18):
 
             measurements.append(float(line[3]))
 
-        features_filenames = []
         features_filenames.extend(centers)
         features_filenames.extend(lefts)
         features_filenames.extend(rights)
-        targets = []
+
         targets.extend(measurements)
         targets.extend([x + correction for x in measurements])
         targets.extend([x - correction for x in measurements])
 
-        return features_filenames, targets
+    return features_filenames, targets
 
 
 def get_batches(samples, batch_size=1024):
@@ -98,16 +101,38 @@ def build_classifier_nvidia():
     :return: keras model
     """
     model = Sequential()
-    model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160, 320, 3)))
-    model.add(Cropping2D(cropping=((50, 20), (0, 0))))
-    model.add(Convolution2D(24,5,5, subsample=(2,2), activation='relu'))
-    model.add(Convolution2D(36,5,5, subsample=(2,2), activation='relu'))
-    model.add(Convolution2D(48,5,5, subsample=(2,2), activation='relu'))
-    model.add(Convolution2D(64,3,3, activation='relu'))
-    model.add(Convolution2D(64,3,3, activation='relu'))
+    # top crop = 50
+    # bottom crop = 20
+    # left,right are the same
+    model.add(Cropping2D(cropping=((50, 20), (0, 0)), input_shape=(160, 320, 3)))
+    model.add(Lambda(lambda x: (x / 255.0) - 0.5))
+    model.add(Convolution2D(24,5,5, subsample=(2,2)))
+    model.add(BatchNormalization())
+    #model.add(Activation('relu'))
+    model.add(LeakyReLU())
+    model.add(Convolution2D(36,5,5, subsample=(2,2)))
+    model.add(BatchNormalization())
+    #model.add(Activation('relu'))
+    model.add(LeakyReLU())
+    model.add(Convolution2D(48,5,5, subsample=(2,2)))
+    model.add(BatchNormalization())
+    #model.add(Activation('relu'))
+    model.add(LeakyReLU())
+    model.add(Convolution2D(64,3,3))
+    model.add(BatchNormalization())
+    #model.add(Activation('relu'))
+    model.add(LeakyReLU())
+    model.add(Convolution2D(64,3,3))
+    model.add(BatchNormalization())
+    #model.add(Activation('relu'))
+    model.add(LeakyReLU())
     model.add(Flatten())
+    #model.add(Dropout(0.3))
     model.add(Dense(100))
+    model.add(BatchNormalization())
     model.add(Dense(50))
+    model.add(BatchNormalization())
     model.add(Dense(10))
+    model.add(BatchNormalization())
     model.add(Dense(1))
     return model
