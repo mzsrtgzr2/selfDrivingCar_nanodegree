@@ -103,3 +103,29 @@ of the car. You can see the visualization later in the writeup.
 
 ![img](03-behavioral_cloning/images/ff.png)
 
+
+# Project #4 - Advanced Lane Finding Project
+
+The goals / steps of this project are the following:
+
+* Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
+* Apply a distortion correction to raw images.
+* Use color transforms, gradients, etc., to create a thresholded binary image.
+* Apply a perspective transform to rectify binary image ("birds-eye view").
+* Detect lane pixels and fit to find the lane boundary.
+* Determine the curvature of the lane and vehicle position with respect to center.
+* Warp the detected lane boundaries back onto the original image.
+* Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+
+
+In this project I created a computer vision pipeline 0 it receives as an input an image (numpy) and returns the processed images after the following steps:
+1. undistort (with calibration chessboard correction)
+2. thresholding
+3. perspective trainsition (bird-view)
+4. cut only the region of interest
+5. detect the lines with window-fit approach
+6. calculate the polynomical coefficients that represents the lines of the road
+7. draw a new numpy matrix that represents the result frame and return it
+
+the final result looks like this:
+![img](04_advanced_lane_detection/images/final_view.png)
